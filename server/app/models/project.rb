@@ -18,4 +18,9 @@ class Project < ApplicationRecord
   def percent_funded
     (pledge_total / funding_goal) * 100
   end
+
+  def active?
+    Date.today <= fund_by_date
+  end
+
 end

@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170807202524) do
     t.string "name"
     t.text "description"
     t.float "funding_goal"
+    t.date "fund_by_date"
     t.string "image"
     t.bigint "user_id"
     t.bigint "category_id"

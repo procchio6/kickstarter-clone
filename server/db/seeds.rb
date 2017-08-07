@@ -37,6 +37,7 @@ project = Project.new(
     name: 'Best Project Ever',
     description: 'This is the best project ever...',
     funding_goal: 10000,
+    fund_by_date: Date.today,
     image: 'path_to_image',
   }
 )
