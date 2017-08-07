@@ -10,4 +10,12 @@ class Project < ApplicationRecord
   def pledge_total
     self.pledges.sum(:amount)
   end
+
+  def fully_funded?
+    pledge_total > funding_goal
+  end
+
+  def percent_funded
+    (pledge_total / funding_goal) * 100
+  end
 end
