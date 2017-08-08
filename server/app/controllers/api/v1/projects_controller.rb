@@ -7,6 +7,14 @@ class Api::V1::ProjectsController < ApplicationController
     render json: @projects
   end
 
+  def active
+    render json: Project.active
+  end
+
+  def inactive
+    render json: Project.inactive
+  end
+
   def show
     render json: @project
   end

@@ -5,6 +5,14 @@ class Project < ApplicationRecord
 
   validates :name, :description, :funding_goal, :fund_by_date, presence: true
 
+  def self.active
+    Project.where("fund_by_date >= ?", Date.today)
+  end
+
+  def self.inactive
+    Project.where("fund_by_date < ?", Date.today)
+  end
+
   def number_of_pledges
     self.pledges.count
   end
