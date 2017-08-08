@@ -11,7 +11,7 @@ class Project < ApplicationRecord
 
   def self.almost_funded
     Project.active.joins(:pledges).group('projects.id')
-      .having('SUM(amount)/projects.funding_goal BETWEEN 0.90 AND 1')
+      .having('SUM(amount)/projects.funding_goal >= 0.90 AND SUM(amount)/projects.funding_goal < 1')
   end
 
   def self.active
