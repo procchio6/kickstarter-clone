@@ -11,8 +11,12 @@ class Api::V1::ProjectsController < ApplicationController
     render json: @projects
   end
 
-  def allmost_funded
+  def almost_funded
     render json: Project.almost_funded
+  end
+
+  def almost_over
+    render json: Project.almost_over
   end
 
   def active

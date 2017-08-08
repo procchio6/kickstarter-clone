@@ -14,6 +14,10 @@ class Project < ApplicationRecord
       .having('SUM(amount)/projects.funding_goal >= 0.90 AND SUM(amount)/projects.funding_goal < 1')
   end
 
+  def self.almost_over
+    Project.active.where("fund_by_date BETWEEN ? AND ?", Date.today, 2.days.from_now)
+  end
+
   def self.active
     Project.where("fund_by_date >= ?", Date.today)
   end
