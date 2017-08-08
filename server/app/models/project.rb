@@ -3,6 +3,8 @@ class Project < ApplicationRecord
   belongs_to :category
   has_many :pledges
 
+  validates :name, :description, :funding_goal, :fund_by_date, presence: true
+
   def number_of_pledges
     self.pledges.count
   end
