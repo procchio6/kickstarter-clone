@@ -2,9 +2,17 @@ class Api::V1::ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :update, :destroy]
 
   def index
-    @projects = Project.all
+    if params[:category]
+      @projects = Project.by_category(params[:category])
+    else
+      @projects = Project.all
+    end
 
     render json: @projects
+  end
+
+  def allmost_funded
+    render json: Project.almost_funded
   end
 
   def active

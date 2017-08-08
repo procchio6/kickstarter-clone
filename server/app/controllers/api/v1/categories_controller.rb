@@ -7,6 +7,10 @@ class Api::V1::CategoriesController < ApplicationController
     render json: @categories
   end
 
+  def projects
+    render json: Project.where("category_id = ?", params[:id])
+  end
+
   def show
     render json: @category
   end

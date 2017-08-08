@@ -5,6 +5,15 @@ class Project < ApplicationRecord
 
   validates :name, :description, :funding_goal, :fund_by_date, presence: true
 
+  def self.by_category(category_id)
+    Project.where('category_id = ?', category_id)
+  end
+
+  def self.almost_funded
+    Project.active.joins(:pledges).group('projects.id')
+      .having('SUM(amount)/projects.funding_goal BETWEEN 0.90 AND 1')
+  end
+
   def self.active
     Project.where("fund_by_date >= ?", Date.today)
   end
