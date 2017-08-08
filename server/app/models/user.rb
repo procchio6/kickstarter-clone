@@ -6,4 +6,16 @@ class User < ApplicationRecord
 
   validates :email, :username, uniqueness: true
   validates :first_name, :last_name, :username, :email, presence: true
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def number_of_pledges
+    self.pledges.count
+  end
+
+  def pledge_total
+    self.pledges.sum(:amount)
+  end
 end

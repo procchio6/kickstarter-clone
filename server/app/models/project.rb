@@ -25,4 +25,12 @@ class Project < ApplicationRecord
     Date.today <= fund_by_date
   end
 
+  def days_left
+    if active?
+      (fund_by_date - Date.today).to_i
+    else
+      0
+    end
+  end
+
 end
