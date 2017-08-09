@@ -14,3 +14,9 @@
 .projectCard .creator span {
   margin-left: 5px;
 }
+
+.header.item {
+  font-size: 1.2em;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}

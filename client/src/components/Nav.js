@@ -15,6 +15,10 @@ render() {
         Start a Project
       </Menu.Item>
 
+      <Menu.Item header>
+        KICKSTARTER
+      </Menu.Item>
+
       <Menu.Menu position='right'>
         <Menu.Item name='login' as={NavLink} to='/login' >
           Login
