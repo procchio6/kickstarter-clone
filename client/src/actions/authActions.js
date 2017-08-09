@@ -1,12 +1,9 @@
+import AuthAdapter from '../adapters/authAdapter'
 
 export function loginUser(formData) {
   return function (dispatch) {
     dispatch({type: 'LOGGING_IN'})
-    fetch('http://localhost:3000/api/v1/login', {
-      method: 'POST',
-      body: formData
-    })
-    .then(resp => resp.json())
+    AuthAdapter.login(formData)
     .then(resp => {
       if (resp.error) {
         dispatch({type: 'LOGIN_FAILED', payload: resp.error})

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :api, :defaults => {:format => :json} do
     namespace :v1 do
-      post '/login', to: 'users#login'
+      post '/login', to: 'sessions#create'
       resources :users, except: :destroy
 
       get '/projects/active', to: 'projects#active'
