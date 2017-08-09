@@ -11,7 +11,7 @@ class ProjectCard extends Component {
 
     return (
       <Card className='projectCard' link>
-        <Image src='http://lorempixel.com/400/200/technics' />
+        <Image fluid src='http://lorempixel.com/400/200/technics' />
         <Card.Content>
           <Card.Meta>Technology</Card.Meta>
           <Card.Description>
