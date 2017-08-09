@@ -52,7 +52,12 @@ class LoginForm extends Component {
                     onChange={this.handleInputChange}
                   />
                 </Form.Field>
-                <Button type='submit' color='green'>Login</Button>
+                <Button
+                  content='Login'
+                  type='submit'
+                  color='green'
+                  loading={this.props.auth.loggingIn}
+                />
                 <Button
                   type='button'
                   content='Signup'
