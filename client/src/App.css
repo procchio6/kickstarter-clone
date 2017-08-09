@@ -1,1 +1,16 @@
+.projectStats .statistic {
+  margin-top: 2px !important;
+  margin-bottom: 2px !important;
+}
 
+.projectStats .progress {
+  margin-bottom: 14px !important;
+}
+
+.projectCard .creator {
+  margin-top: 7px;
+}
+
+.projectCard .creator span {
+  margin-left: 5px;
+}

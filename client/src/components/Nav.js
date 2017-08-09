@@ -7,7 +7,7 @@ class Nav extends Component {
 render() {
   return (
     <Menu inverted fluid borderless fixed='top'>
-      <Menu.Item name='explore' as={NavLink} to='/explore' >
+      <Menu.Item name='explore' exact as={NavLink} to='/' >
          Explore
       </Menu.Item>
 

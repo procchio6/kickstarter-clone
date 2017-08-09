@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
+import { Container } from 'semantic-ui-react'
 
-import Home from './components/containers/Home'
+import Home from './containers/Home'
 import Nav from './components/Nav'
+import ProjectsContainer from './components/containers/ProjectsContainer'
+
 import './App.css';
 
 class App extends Component {
@@ -10,9 +13,12 @@ class App extends Component {
     return (
       <div>
         <Nav/>
-        <Switch>
-          <Route path='/explore' component={Home} />
-        </Switch>
+        <Container>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/projects' component={ProjectsContainer} />
+          </Switch>
+        </Container>
       </div>
     );
   }
