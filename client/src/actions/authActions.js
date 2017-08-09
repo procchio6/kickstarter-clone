@@ -12,6 +12,7 @@ export function loginUser(formData) {
         dispatch({type: 'LOGIN_FAILED', payload: resp.error})
       } else {
         dispatch({type: 'LOGIN_USER', payload: resp})
+        window.localStorage.setItem('token', resp.token)
       }
     })
   }
