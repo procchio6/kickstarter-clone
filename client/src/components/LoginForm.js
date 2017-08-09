@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import { Button, Card, Form, Grid } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { Button, Card, Form, Grid, Message } from 'semantic-ui-react'
+
+import { loginUser, clearErrors } from '../actions/authActions'
 
 class LoginForm extends Component {
   constructor(props) {
@@ -9,6 +12,10 @@ class LoginForm extends Component {
       username: '',
       password: ''
     }
+  }
+
+  componentWillUnmount() {
+    this.props.clearErrors()
   }
 
   handleInputChange = (event) => {
@@ -22,8 +29,11 @@ class LoginForm extends Component {
       <Grid centered>
         <Grid.Column width={9}>
           <Card fluid>
+            {this.props.auth.errors.length > 0 ?
+              <Message content='Username or password is incorrect!' error attached /> : null
+            }
             <Card.Content>
-              <Form>
+              <Form onSubmit={this.props.loginUser}>
                 <Form.Field>
                   <label>Username</label>
                   <input
@@ -43,6 +53,11 @@ class LoginForm extends Component {
                   />
                 </Form.Field>
                 <Button type='submit' color='green'>Login</Button>
+                <Button
+                  type='button'
+                  content='Signup'
+                  onClick={(e)=>this.props.history.push('/signup')}
+                />
               </Form>
             </Card.Content>
           </Card>
@@ -52,4 +67,8 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm
+function mapStateToProps(state) {
+  return {auth: state.auth}
+}
+
+export default connect(mapStateToProps, {loginUser, clearErrors})(LoginForm)

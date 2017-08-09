@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Redirect, Route } from 'react-router-dom'
 import { Container } from 'semantic-ui-react'
 
 import Home from './containers/Home'
@@ -19,6 +19,7 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route path='/projects' component={ProjectsContainer} />
             <Route path='/login' component={LoginForm} />
+            <Route path='/logout' render={() => <Redirect to='/' />}/>
           </Switch>
         </Container>
       </div>

@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
+import { logoutUser } from '../actions/authActions'
+
 class Nav extends Component {
 
 render() {
@@ -26,7 +28,7 @@ render() {
             <Menu.Item name='myProjects' as={NavLink} to='/projects/me'>
               My Projects
             </Menu.Item>
-            <Menu.Item name='logout'>
+            <Menu.Item name='logout' as={NavLink} to='/logout' onClick={this.props.logoutUser}>
               Logout
             </Menu.Item>
           </Menu.Menu>
@@ -46,4 +48,4 @@ function mapStateToProps({auth}) {
   return {auth}
 }
 
-export default connect(mapStateToProps)(Nav)
+export default connect(mapStateToProps, {logoutUser})(Nav)
