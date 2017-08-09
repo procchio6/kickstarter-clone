@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Redirect, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { Container } from 'semantic-ui-react'
 
 import Home from './containers/Home'
@@ -18,7 +19,11 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/projects' component={ProjectsContainer} />
-            <Route path='/login' component={LoginForm} />
+            <Route path='/login'
+              render={() => (
+                this.props.auth.loggedIn ? <Redirect to='/' /> : <LoginForm />
+              )}
+            />
             <Route path='/logout' render={() => <Redirect to='/' />}/>
           </Switch>
         </Container>
@@ -27,4 +32,8 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {auth: state.auth}
+}
+
+export default connect(mapStateToProps)(App);

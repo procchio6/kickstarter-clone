@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import 'semantic-ui-css/semantic.min.css'
 import './stylesheets/index.css'
@@ -18,7 +18,7 @@ const store = createStore(rootReducer, composeWithDevTools(
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <Route path='/' component={App} />
     </Router>
   </Provider>
   , document.getElementById('root'));

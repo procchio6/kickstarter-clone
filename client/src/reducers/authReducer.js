@@ -7,15 +7,35 @@ export default function authReducer(
   }, action) {
   switch (action.type) {
     case "LOGIN_USER":
-      return {loggedIn: true, loggingIn: false, currentUser: action.payload}
+      return {
+        ...state,
+        loggedIn: true,
+        loggingIn: false,
+        currentUser: action.payload.user_id
+      }
     case "LOGOUT_USER":
-      return {loggedIn: false, currentUser: null}
+      return {
+        ...state,
+        loggedIn: false,
+        currentUser: null
+      }
     case "LOGIN_FAILED":
-      return {...state, loggingIn: false, errors:[action.payload]}
+      return {
+        ...state,
+        loggingIn: false,
+        errors:[action.payload]
+      }
     case "LOGGING_IN":
-      return {...state, loggingIn: true, errors:[]}
+      return {
+        ...state,
+        loggingIn: true,
+        errors:[]
+      }
     case "CLEAR_LOGIN_ERRORS":
-      return {...state, errors:[]}
+      return {
+        ...state,
+        errors:[]
+      }
     default:
       return state
   }
