@@ -4,7 +4,7 @@ import { Container } from 'semantic-ui-react'
 
 import Home from './containers/Home'
 import Nav from './components/Nav'
-import ProjectsContainer from './components/containers/ProjectsContainer'
+import ProjectsContainer from './containers/ProjectsContainer'
 
 import './App.css';
 
@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Nav/>
+        <Route path='/' component={Nav} />
         <Container>
           <Switch>
             <Route exact path='/' component={Home} />

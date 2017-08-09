@@ -16,7 +16,7 @@
 }
 
 .header.item {
-  font-size: 1.2em;
-  margin-right: auto !important;
-  margin-left: auto !important;
+  position: absolute !important;
+  left: 50%;
+  margin-left: -62px !important;
 }
