@@ -7,7 +7,7 @@ import LoginForm from './components/LoginForm'
 import Nav from './components/Nav'
 import ProjectsContainer from './containers/ProjectsContainer'
 
-import './App.css';
+import './stylesheets/App.css';
 
 class App extends Component {
   render() {
