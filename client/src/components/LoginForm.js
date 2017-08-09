@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Button, Card, Form, Grid, Message } from 'semantic-ui-react'
+import { Button, Card, Form, Grid, Icon, Message } from 'semantic-ui-react'
 
 import { loginUser, clearErrors } from '../actions/authActions'
 
@@ -24,6 +24,11 @@ class LoginForm extends Component {
     })
   }
 
+  handleLogin = (event) => {
+    event.preventDefault()
+    this.props.loginUser(this.state)
+  }
+
   render() {
     return (
       <Grid centered>
@@ -33,7 +38,7 @@ class LoginForm extends Component {
               <Message content='Username or password is incorrect!' error attached /> : null
             }
             <Card.Content>
-              <Form onSubmit={this.props.loginUser}>
+              <Form onSubmit={this.handleLogin}>
                 <Form.Field>
                   <label>Username</label>
                   <input
@@ -53,11 +58,13 @@ class LoginForm extends Component {
                   />
                 </Form.Field>
                 <Button
-                  content='Login'
                   type='submit'
                   color='green'
                   loading={this.props.auth.loggingIn}
-                />
+                >
+                  <Icon name='unlock alternate'/>
+                  Login
+                </Button>
                 <Button
                   type='button'
                   content='Signup'
