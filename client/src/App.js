@@ -20,8 +20,8 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route path='/projects' component={ProjectsContainer} />
             <Route path='/login'
-              render={() => (
-                this.props.auth.loggedIn ? <Redirect to='/' /> : <LoginForm />
+              render={({history}) => (
+                this.props.auth.loggedIn ? <Redirect to='/' /> : <LoginForm history={history}/>
               )}
             />
             <Route path='/logout' render={() => <Redirect to='/' />}/>
