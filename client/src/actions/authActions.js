@@ -2,7 +2,7 @@
 export function loginUser(formData) {
   return function (dispatch) {
     dispatch({type: 'LOGGING_IN'})
-    fetch('http://localhost:3000/login', {
+    fetch('http://localhost:3000/api/v1/login', {
       method: 'POST',
       body: formData
     })
