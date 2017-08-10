@@ -6,6 +6,7 @@ import { Container } from 'semantic-ui-react'
 import Home from './containers/Home'
 import LoginForm from './components/LoginForm'
 import Nav from './components/Nav'
+import NewProjectForm from './components/NewProjectForm'
 import ProjectsContainer from './containers/ProjectsContainer'
 import SignupForm from './components/SignupForm'
 
@@ -19,7 +20,10 @@ class App extends Component {
         <Container>
           <Switch>
             <Route exact path='/' component={Home} />
+
+            <Route path='/projects/new' render={() => <NewProjectForm />} />
             <Route path='/projects' component={ProjectsContainer} />
+
             <Route path='/login'
               render={ ({history}) => (
                 this.props.auth.loggedIn ? <Redirect to='/' /> : <LoginForm history={history}/>
