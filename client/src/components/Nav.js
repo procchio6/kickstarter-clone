@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
@@ -20,7 +20,9 @@ render() {
       </Menu.Item>
 
       <Menu.Item header>
-        JUMP<span style={{color:'#21BA45'}}>STARTER</span>
+        <Link to='/'>
+          JUMP<span style={{color:'#21BA45'}}>STARTER</span>
+        </Link>
       </Menu.Item>
 
         {this.props.auth.loggedIn ?
