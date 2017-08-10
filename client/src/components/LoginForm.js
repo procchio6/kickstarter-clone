@@ -32,7 +32,7 @@ class LoginForm extends Component {
   render() {
     return (
       <Grid centered>
-        <Grid.Column width={9}>
+        <Grid.Column mobile={12} tablet={8} computer={6} largeScreen={5} >
           <Card fluid>
             {this.props.auth.errors.length > 0 ?
               <Message content='Username or password is incorrect!' error attached /> : null

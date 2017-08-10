@@ -20,7 +20,7 @@ render() {
       </Menu.Item>
 
       <Menu.Item header>
-        KICKSTARTER
+        JUMP<span style={{color:'#21BA45'}}>STARTER</span>
       </Menu.Item>
 
         {this.props.auth.loggedIn ?
