@@ -19,15 +19,19 @@ class Api::V1::UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      render json: @user, status: :created
+      created_jwt = issue_token({id: @user.id})
+
+      render json: { user_id: @user.id, token: created_jwt }, status: :created
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: { errors: @user.errors.full_messages, status: :unprocessable_entity }
     end
   end
 
   def update
     if @user.update(user_params)
-      render json: @user
+      render json: {
+        user_id: @user
+      }
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -44,6 +48,6 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :username, :email, :password)
+      params.permit(:first_name, :last_name, :username, :email, :password)
     end
 end

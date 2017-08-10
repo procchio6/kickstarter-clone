@@ -7,6 +7,7 @@ import Home from './containers/Home'
 import LoginForm from './components/LoginForm'
 import Nav from './components/Nav'
 import ProjectsContainer from './containers/ProjectsContainer'
+import SignupForm from './components/SignupForm'
 
 import './stylesheets/App.css';
 
@@ -20,8 +21,13 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route path='/projects' component={ProjectsContainer} />
             <Route path='/login'
-              render={({history}) => (
+              render={ ({history}) => (
                 this.props.auth.loggedIn ? <Redirect to='/' /> : <LoginForm history={history}/>
+              )}
+            />
+            <Route path='/signup'
+              render={ ({history}) => (
+                this.props.auth.loggedIn ? <Redirect to='/' /> : <SignupForm history={history}/>
               )}
             />
             <Route path='/logout' render={() => <Redirect to='/' />}/>
