@@ -2,7 +2,7 @@ class Api::V1::CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :update, :destroy]
 
   def index
-    @categories = Category.all
+    @categories = Category.all.order(name: :ASC)
 
     render json: @categories
   end
