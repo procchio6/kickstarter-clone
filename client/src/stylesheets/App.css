@@ -7,6 +7,11 @@
   margin-bottom: 14px !important;
 }
 
+.projectShowSidebar {
+  margin-top: 80px;
+  position: fixed;
+}
+
 .projectCard .creator {
   margin-top: 7px;
 }
