@@ -1,26 +1,30 @@
+import headers from './headers'
+
 const ROOT_URL = 'http://localhost:3000/api/v1'
 
 class ProjectsAdapter {
-  static function getProjects(option = '') {
-    return fetch(`${ROOT_URL}/projects/${option}`)
+  static getProjects(option = '') {
+    return fetch(`${ROOT_URL}/projects/${option}`, {headers})
   }
 
-  static function createProject(project) {
+  static createProject(project) {
     return fetch(`${ROOT_URL}/projects`, {
       method: 'POST',
-      body: project
-    })
+      headers: headers(),
+      body: JSON.stringify(project)
+    }).then(resp => resp.json())
   }
 
-  static function updateProject(project) {
+  static updateProject(project) {
     return fetch(`${ROOT_URL}/projects/${project.id}`, {
       method: 'PATCH',
-      body: project
+      headers: headers(),
+      body: JSON.stringify(project)
     })
   }
 
-  static function deleteProject(projectID) {
-    return fetch(`${ROOT_URL}/projects/${projectID}`, {method: 'DELETE'})
+  static deleteProject(projectID) {
+    return fetch(`${ROOT_URL}/projects/${projectID}`, {method: 'DELETE', headers: headers()})
   }
 }
 

@@ -38,6 +38,17 @@ export function logoutUser() {
   }
 }
 
+export function getCurrentUser() {
+  return function (dispatch) {
+    AuthAdapter.currentUser()
+    .then( (resp) => {
+      if (!resp.error) {
+        dispatch({type: 'SET_CURRENT_USER', payload: resp})
+      }
+    })
+  }
+}
+
 export function clearErrors() {
   return {type: 'CLEAR_LOGIN_ERRORS'}
 }

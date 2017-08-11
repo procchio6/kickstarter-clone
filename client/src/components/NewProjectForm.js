@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Button, Card, Form, Grid, Header, Icon, Input, Label, Message } from 'semantic-ui-react'
+import { Button, Card, Dropdown, Form, Grid, Icon, Input, Label, Message } from 'semantic-ui-react'
+
+import { getCategories } from '../actions/categoryActions'
+import { createProject } from '../actions/projectActions'
 
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css';
@@ -13,14 +16,18 @@ class LoginForm extends Component {
     this.state = {
       name: '',
       description: '',
-      funding_goal: '',
-      fund_by_date: moment(),
+      funding_goal: '100',
+      fund_by_date: moment().add(1, 'days'),
       category_id: ''
     }
   }
 
+  componentWillMount() {
+    this.props.getCategories()
+  }
+
   componentWillUnmount() {
-    this.props.clearErrors()
+
   }
 
   handleInputChange = (event) => {
@@ -35,9 +42,23 @@ class LoginForm extends Component {
     });
   }
 
+  handleDropDownChange = (e, {name, value}) => {
+    this.setState({
+      [name]: value
+    })
+  }
+
   handleSubmit = (event) => {
     event.preventDefault()
     console.log(this.state);
+    this.props.createProject(this.state)
+  }
+
+  categoryOptions = () => {
+    const categories = this.props.categories
+    return categories.map( (category, index) => {
+      return {key:index, text: category.name, value: category.id}
+    })
   }
 
   render() {
@@ -77,10 +98,10 @@ class LoginForm extends Component {
                   <label>Funding Goal</label>
                   <Input
                     labelPosition='right'
-                    type='text'
                     placeholder='Amount'
                     name='funding_goal'
                     type='number'
+                    min='100'
                     value={this.state.funding_goal}
                     onChange={this.handleInputChange}
                   >
@@ -91,12 +112,29 @@ class LoginForm extends Component {
                 </Form.Field>
 
                 <Form.Field>
-                  <label>Fund By</label>
-                  <DatePicker
-                    selected={this.state.fund_by_date}
-                    onChange={this.handleDateChange}
-                    minDate={moment()}
+                  <label>Category</label>
+                  <Dropdown fluid selection
+                    name='category_id'
+                    placeholder='Select a Category'
+                    value={this.state.category_id}
+                    options={this.categoryOptions()}
+                    onChange={this.handleDropDownChange}
                   />
+                </Form.Field>
+
+                <Form.Field>
+                  <label>Fund By</label>
+                  <div style={{display: 'inline-block'}}>
+                    <DatePicker
+                      className='datePicker'
+                      selected={this.state.fund_by_date}
+                      onChange={this.handleDateChange}
+                      minDate={moment().add(1, 'days')}
+                    />
+                  </div>
+                  <Label pointing='left' style={{top: '8px'}}>
+                    {this.state.fund_by_date.diff(moment(), 'days') + 1 + ' days'}
+                  </Label>
                 </Form.Field>
 
                 <Button
@@ -115,7 +153,7 @@ class LoginForm extends Component {
 }
 
 function mapStateToProps(state) {
-  return {...state.newProjectForm}
+  return {...state.newProjectForm, categories: state.categories}
 }
 
-export default connect(mapStateToProps, null)(LoginForm)
+export default connect(mapStateToProps, {getCategories, createProject})(LoginForm)

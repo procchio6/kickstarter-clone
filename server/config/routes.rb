@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :api, :defaults => {:format => :json} do
     namespace :v1 do
       post '/login', to: 'sessions#create'
+      get '/me', to: 'sessions#show'
       post '/signup', to: 'users#create'
       resources :users, except: :destroy
 

@@ -8,12 +8,12 @@ export default function (ComposedComponent, inheritedProps) {
     }
     componentDidMount () {
       if(!localStorage.getItem('token')){
-        this.context.router.history.push('/')
+        this.context.router.history.push('/login')
       }
     }
     componentWillUpdate () {
       if(!localStorage.getItem('token')){
-        this.context.router.history.push('/')
+        this.context.router.history.push('/login')
       }
     }
     render(){

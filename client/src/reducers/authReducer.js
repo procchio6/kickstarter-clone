@@ -36,6 +36,12 @@ export default function authReducer(
         ...state,
         errors:[]
       }
+    case "SET_CURRENT_USER":
+      return {
+        ...state,
+        loggedIn: true,
+        currentUser: action.payload.id
+      }
     default:
       return state
   }
