@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Button, Card, Dropdown, Form, Grid, Icon, Input, Label, Message } from 'semantic-ui-react'
 
 import { getCategories } from '../actions/categoryActions'
-import { createProject } from '../actions/projectActions'
+import { createProject, clearErrors } from '../actions/projectActions'
 
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css';
@@ -22,12 +22,14 @@ class LoginForm extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getCategories()
   }
 
   componentWillUnmount() {
-
+    if (this.props.errors.length > 0) {
+      this.props.clearErrors()
+    }
   }
 
   handleInputChange = (event) => {
@@ -50,7 +52,6 @@ class LoginForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    console.log(this.state);
     this.props.createProject(this.state)
   }
 
@@ -66,10 +67,8 @@ class LoginForm extends Component {
       <Grid centered>
         <Grid.Column mobile={12} tablet={8} computer={6} largeScreen={5} >
           <Card fluid>
-            {/*this.props.auth.errors.length > 0 ?
-              <Message content='Username or password is incorrect!' error attached /> : null
-            */}
             <Card.Content header='Create Project' />
+
             <Card.Content>
               <Form onSubmit={this.handleSubmit}>
 
@@ -140,11 +139,17 @@ class LoginForm extends Component {
                 <Button
                   type='submit'
                   color='green'
+                  loading={this.props.creatingProject}
                 >
                   Create Project
                 </Button>
               </Form>
             </Card.Content>
+
+            {this.props.errors.length > 0 ?
+              <Message list={this.props.errors} error attached /> : null
+            }
+
           </Card>
         </Grid.Column>
       </Grid>
@@ -156,4 +161,4 @@ function mapStateToProps(state) {
   return {...state.newProjectForm, categories: state.categories}
 }
 
-export default connect(mapStateToProps, {getCategories, createProject})(LoginForm)
+export default connect(mapStateToProps, {getCategories, createProject, clearErrors})(LoginForm)

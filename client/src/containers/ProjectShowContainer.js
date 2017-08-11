@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 class ProjectShowContainer extends Component {
   render() {
-    debugger
     return <div>Show Project</div>
   }
 }

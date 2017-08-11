@@ -33,6 +33,7 @@ class App extends Component {
             <Route exact path='/' component={Home} />
 
             <Route path='/projects/new' component={Authorize(NewProjectForm)} />
+            <Route path='projects/me' component={ProjectShowContainer} />
             <Route path='/projects/:id' component={ProjectShowContainer} />
             <Route exact path='/projects' component={ProjectsContainer} />
 
