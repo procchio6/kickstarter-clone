@@ -20,6 +20,21 @@ export function createProject(formData) {
   }
 }
 
+export function getProject(projectId) {
+  return function (dispatch) {
+    dispatch({type: 'GETTING_PROJECT'})
+    ProjectAdapter.getProject(projectId)
+    .then(project => {
+      if (project.error) {
+        dispatch({type: 'GET_PROJECT_FAILED'})
+        history.push('/')
+      } else {
+        dispatch({type: 'LOAD_PROJECT', payload: project})
+      }
+    })
+  }
+}
+
 export function clearErrors() {
   return {type: 'CLEAR_PROJECT_ERRORS'}
 }

@@ -4,7 +4,13 @@ const ROOT_URL = 'http://localhost:3000/api/v1'
 
 class ProjectsAdapter {
   static getProjects(option = '') {
-    return fetch(`${ROOT_URL}/projects/${option}`, {headers})
+    return fetch(`${ROOT_URL}/projects/${option}`, {headers: headers()})
+  }
+
+  static getProject(projectId) {
+    return fetch(`${ROOT_URL}/projects/${projectId}`, {
+      headers: headers()
+    }).then(resp => resp.json())
   }
 
   static createProject(project) {
