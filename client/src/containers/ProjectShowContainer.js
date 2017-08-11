@@ -7,6 +7,9 @@ import {
 
 import { getProject } from '../actions/projectActions'
 
+import PledgeCard from '../components/PledgeCard'
+import ProjectStats from '../components/ProjectStats'
+
 class ProjectShowContainer extends Component {
 
   componentWillMount() {
@@ -31,7 +34,6 @@ class ProjectShowContainer extends Component {
           <Image fluid src='http://lorempixel.com/400/200/technics' />
           <Menu attached='top' tabular>
             <Menu.Item name='Campaign' active/>
-            <Menu.Item name='Images' />
             <Menu.Item name='FAQ' />
             <Menu.Item name='Comments' />
             <Menu.Item name='Backers' />
@@ -60,37 +62,10 @@ Maecenas aliquet interdum lectus eu bibendum. Phasellus dictum rutrum mauris, eu
           </Segment>
         </Grid.Column>
         <Grid.Column width={4}>
-
           <div className='projectShowSidebar' >
-            <Card>
-              <Card.Content>
-                <Progress size='tiny' percent={50} success/>
-                <Statistic.Group size='tiny' items={statistics} />
-              </Card.Content>
-            </Card>
-            <Card>
-              <Card.Content>
-                <Form>
-                  <Form.Field>
-                    <Input fluid
-                      labelPosition='right'
-                      placeholder='Amount'
-                      name='funding_goal'
-                      type='number'
-                      min='1'
-                      onChange={this.handleInputChange}
-                      >
-                        <Label basic>$</Label>
-                        <input/>
-                        <Label>.00</Label>
-                      </Input>
-                    </Form.Field>
-                    <Button fluid type='submit' content='Pledge' color='green' />
-                  </Form>
-                </Card.Content>
-              </Card>
-            </div>
-
+            <ProjectStats statistics={statistics}/>
+            <PledgeCard />
+          </div>
         </Grid.Column>
       </Grid>
     )
