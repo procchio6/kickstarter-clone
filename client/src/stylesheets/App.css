@@ -12,6 +12,12 @@
   position: fixed;
 }
 
+.projectShowSidebar .statistic {
+  width: 100%;
+  margin-bottom: 14px !important;
+  margin-left: 0px !important;
+}
+
 .projectCard .creator {
   margin-top: 7px;
 }

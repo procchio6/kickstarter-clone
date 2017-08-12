@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Grid, Header, Image } from 'semantic-ui-react'
+import accounting from 'accounting'
 
 import { getProject } from '../actions/projectActions'
 import { createPledge } from '../actions/pledgeActions'
@@ -12,16 +13,18 @@ import ProjectStats from '../components/ProjectStats'
 class ProjectShowContainer extends Component {
 
   componentWillMount() {
+    window.scrollTo(0, 0)
     const projectId = this.props.match.params.id
     this.props.getProject(projectId)
   }
 
   render() {
     const project = this.props.project
+    const pledgeTotal = accounting.formatMoney(project.pledge_total, '$', 0)
+    const fundingGoal = accounting.formatMoney(project.funding_goal, '$', 0)
 
     const statistics = [
-      {label: `pledged of $${project.funding_goal} goal`, value: `$${project.pledge_total}`},
-      {label: 'number of pledges', value: `${project.number_of_pledges}`},
+      {label: `pledged of ${fundingGoal} goal`, value: `${pledgeTotal}`},
       {label: 'backers', value: `${project.number_of_backers}`},
       {label: 'days to go', value: `${project.days_left}`}
     ]

@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 import { Card, Image, Progress, Statistic } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import accounting from 'accounting'
+
 
 class ProjectCard extends Component {
   render() {
     const { project } = this.props
 
+    const pledgeTotal = accounting.formatMoney(project.pledge_total, '$', 0)
+
     const statistics = [
-      {label: 'pledged', value: `$${project.pledge_total}`},
+      {label: 'pledged', value: pledgeTotal},
       {label: 'funded', value: `${project.percent_funded.toFixed()}%`},
       {label: 'days to go', value: project.days_left}
     ]
