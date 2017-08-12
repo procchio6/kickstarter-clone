@@ -4,7 +4,9 @@ const ROOT_URL = 'http://localhost:3000/api/v1'
 
 class ProjectsAdapter {
   static getProjects(option = '') {
-    return fetch(`${ROOT_URL}/projects/${option}`, {headers: headers()})
+    return fetch(`${ROOT_URL}/projects/${option}`, {
+      headers: headers()
+    }).then(resp => resp.json())
   }
 
   static getProject(projectId) {

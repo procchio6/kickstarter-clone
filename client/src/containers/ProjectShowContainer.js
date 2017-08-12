@@ -40,6 +40,7 @@ class ProjectShowContainer extends Component {
             <PledgeCard
               projectId={project.id}
               onCreatePledge={this.props.createPledge}
+              disabled={project.days_left <= 0}
             />
           </div>
         </Grid.Column>

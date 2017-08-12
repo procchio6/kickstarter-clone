@@ -1,7 +1,7 @@
 export default function authReducer(
   state = {
     loggedIn: false,
-    currentUser: null,
+    currentUser: {},
     errors: [],
     loggingIn: false
   }, action) {
@@ -11,13 +11,16 @@ export default function authReducer(
         ...state,
         loggedIn: true,
         loggingIn: false,
-        currentUser: action.payload.user_id
+        currentUser: {
+          id: action.payload.id,
+          username: action.payload.username
+        }
       }
     case "LOGOUT_USER":
       return {
         ...state,
         loggedIn: false,
-        currentUser: null
+        currentUser: {}
       }
     case "LOGIN_FAILED":
       return {
@@ -40,7 +43,10 @@ export default function authReducer(
       return {
         ...state,
         loggedIn: true,
-        currentUser: action.payload.id
+        currentUser: {
+          id: action.payload.id,
+          username: action.payload.username
+        }
       }
     default:
       return state

@@ -47,13 +47,17 @@ export default class PledgeCard extends Component {
                 min='1'
                 onChange={this.handleInputChange}
                 value={this.state.amount}
+                disabled={this.props.disabled}
                 >
                   <Label basic>$</Label>
                   <input/>
                   <Label>.00</Label>
                 </Input>
               </Form.Field>
-              <Button fluid type='submit' content='Pledge' color='green' onClick={this.handleModalOpen}/>
+              <Button fluid type='submit' content='Pledge' color='green' 
+                onClick={this.handleModalOpen}
+                disabled={this.props.disabled}
+              />
             </Form>
           </Card.Content>
           <PledgeModal

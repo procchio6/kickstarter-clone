@@ -1,31 +1,33 @@
 import React, { Component } from 'react'
 import { Card, Image, Progress, Statistic } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 class ProjectCard extends Component {
   render() {
+    const { project } = this.props
+
     const statistics = [
-      {label: 'pledged', value: '$20,000'},
-      {label: 'funded', value: '50%'},
-      {label: 'days to go', value: '12'}
+      {label: 'pledged', value: `$${project.pledge_total}`},
+      {label: 'funded', value: `${project.percent_funded.toFixed()}%`},
+      {label: 'days to go', value: project.days_left}
     ]
 
     return (
-      <Card className='projectCard' link>
+      <Card className='projectCard' link as={Link} to={`/projects/${project.id}`}>
         <Image fluid src='http://lorempixel.com/400/200/technics' />
         <Card.Content>
-          <Card.Meta>Technology</Card.Meta>
+          <Card.Header>{project.name}</Card.Header>
+          <Card.Meta>{project.category.name}</Card.Meta>
           <Card.Description>
-            Lorem ipsum dolor sit amet, diam nam consequat,
-            tellus sed, consectetuer vel nec odio, vitae sociosqu vivamus,
-            euismod justo eget ullamcorper velit vestibulum...
+            {project.description}
           </Card.Description>
           <Card.Meta className='creator'>
             <Image size='mini' avatar src='http://lorempixel.com/100/100'/>
-            <span>by Pat Rocchio</span>
+            <span>by {project.creator.full_name}</span>
           </Card.Meta>
         </Card.Content>
         <Card.Content extra className='projectStats'>
-          <Progress size='tiny' percent={50} success/>
+          <Progress size='tiny' percent={project.percent_funded} success/>
           <Statistic.Group horizontal size='mini' items={statistics} />
         </Card.Content>
       </Card>

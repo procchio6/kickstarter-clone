@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { Menu } from 'semantic-ui-react'
+import { Dropdown, Menu } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 import { logoutUser } from '../actions/authActions'
@@ -27,12 +27,15 @@ render() {
 
         {this.props.auth.loggedIn ?
           <Menu.Menu position='right'>
-            <Menu.Item name='myProjects' as={NavLink} to='/projects/me'>
-              My Projects
-            </Menu.Item>
-            <Menu.Item name='logout' as={NavLink} to='/logout' onClick={this.props.logoutUser}>
-              Logout
-            </Menu.Item>
+            <Dropdown item text={this.props.auth.currentUser.username}>
+              <Dropdown.Menu>
+                <Dropdown.Item>My Projects</Dropdown.Item>
+                <Dropdown.Item>Edit Account</Dropdown.Item>
+                <Dropdown.Item as={Link} to='/logout' onClick={this.props.logoutUser}>
+                  Logout
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </Menu.Menu>
         :
           <Menu.Menu position='right'>

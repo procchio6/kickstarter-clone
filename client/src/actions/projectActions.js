@@ -1,6 +1,21 @@
 import ProjectAdapter from '../adapters/projectsAdapter'
 import history from '../history'
 
+export function getProjects() {
+  return function (dispatch) {
+    dispatch({type: 'GETTING_PROJECTS'})
+
+    ProjectAdapter.getProjects()
+    .then(projects => {
+      if (projects.errors) {
+        dispatch({type: 'GETTING_PROJECTS_FAILED', payload: projects.errors})
+      } else {
+        dispatch({type: 'LOAD_PROJECTS', payload: projects})
+      }
+    })
+  }
+}
+
 export function createProject(formData) {
   return function (dispatch) {
     const fund_by_date = formData.fund_by_date.format('YYYY-MM-DD')

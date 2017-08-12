@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Button, Card, Dropdown, Form, Grid, Input, Label, Message } from 'semantic-ui-react'
+import {
+  Button, Card, Dropdown, Form, Grid, Input, Label, Message, TextArea
+} from 'semantic-ui-react'
 
 import { getCategories } from '../actions/categoryActions'
 import { createProject, clearErrors } from '../actions/projectActions'
@@ -84,10 +86,10 @@ class LoginForm extends Component {
 
                 <Form.Field>
                   <label>Description</label>
-                  <input
+                  <TextArea
                     name='description'
-                    type='text'
                     placeholder='Short description of your project...'
+                    style={{resize: 'none'}}
                     value={this.state.description}
                     onChange={this.handleInputChange}
                   />

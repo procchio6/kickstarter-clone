@@ -19,7 +19,7 @@ import './stylesheets/App.css';
 class App extends Component {
 
   componentDidMount() {
-    if (localStorage.getItem('token') && this.props.auth.currentUser === null) {
+    if (localStorage.getItem('token')) {
       this.props.getCurrentUser()
     }
   }
