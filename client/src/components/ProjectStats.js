@@ -10,7 +10,7 @@ export default class ProjectStats extends Component {
     return (
       <Card>
         <Card.Content>
-          <Progress size='tiny' percent={50} success/>
+          <Progress size='small' percent={this.props.percent_funded} success/>
           <Statistic.Group size='tiny' items={this.props.statistics} />
         </Card.Content>
       </Card>

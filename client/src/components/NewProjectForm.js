@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Button, Card, Dropdown, Form, Grid, Icon, Input, Label, Message } from 'semantic-ui-react'
+import { Button, Card, Dropdown, Form, Grid, Input, Label, Message } from 'semantic-ui-react'
 
 import { getCategories } from '../actions/categoryActions'
 import { createProject, clearErrors } from '../actions/projectActions'
@@ -101,6 +101,7 @@ class LoginForm extends Component {
                     name='funding_goal'
                     type='number'
                     min='100'
+                    max='1000000000'
                     value={this.state.funding_goal}
                     onChange={this.handleInputChange}
                   >
