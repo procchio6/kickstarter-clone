@@ -22,11 +22,11 @@ export function createProject(formData) {
 
 export function getProject(projectId) {
   return function (dispatch) {
-    dispatch({type: 'GETTING_PROJECT'})
+    dispatch({type: 'GETTING_PROJECT', payload: projectId})
     ProjectAdapter.getProject(projectId)
     .then(project => {
       if (project.error) {
-        dispatch({type: 'GET_PROJECT_FAILED'})
+        dispatch({type: 'GET_PROJECT_FAILED', payload: project.error})
         history.push('/')
       } else {
         dispatch({type: 'LOAD_PROJECT', payload: project})

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Grid, Header, Image } from 'semantic-ui-react'
 
 import { getProject } from '../actions/projectActions'
+import { createPledge } from '../actions/pledgeActions'
 
 import PledgeCard from '../components/PledgeCard'
 import ProjectDetailsPanel from './ProjectDetailsPanel'
@@ -20,7 +21,8 @@ class ProjectShowContainer extends Component {
 
     const statistics = [
       {label: `pledged of $${project.funding_goal} goal`, value: `$${project.pledge_total}`},
-      {label: 'backers', value: `${project.number_of_pledges}`},
+      {label: 'number of pledges', value: `${project.number_of_pledges}`},
+      {label: 'backers', value: `${project.number_of_backers}`},
       {label: 'days to go', value: `${project.days_left}`}
     ]
 
@@ -35,7 +37,10 @@ class ProjectShowContainer extends Component {
         <Grid.Column width={4}>
           <div className='projectShowSidebar' >
             <ProjectStats statistics={statistics} percent_funded={project.percent_funded}/>
-            <PledgeCard />
+            <PledgeCard
+              projectId={project.id}
+              onCreatePledge={this.props.createPledge}
+            />
           </div>
         </Grid.Column>
       </Grid>
@@ -47,4 +52,4 @@ function mapStateToProps(state) {
   return {project: state.projects.currentProject}
 }
 
-export default connect(mapStateToProps, {getProject})(ProjectShowContainer)
+export default connect(mapStateToProps, {getProject, createPledge})(ProjectShowContainer)

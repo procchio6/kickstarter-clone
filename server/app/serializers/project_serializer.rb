@@ -3,6 +3,7 @@ class ProjectSerializer < ActiveModel::Serializer
   has_one :category
   belongs_to :creator, serializer: ProjectCreatorSerializer
   attribute :number_of_pledges
+  attribute :number_of_backers
   attribute :percent_funded
   attribute :pledge_total
   attribute :days_left

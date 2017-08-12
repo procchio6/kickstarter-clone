@@ -13,6 +13,7 @@ class Api::V1::PledgesController < ApplicationController
 
   def create
     @pledge = Pledge.new(pledge_params)
+    @pledge.user = current_user
 
     if @pledge.save
       render json: @pledge, status: :created

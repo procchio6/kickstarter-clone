@@ -2,6 +2,7 @@ class Project < ApplicationRecord
   belongs_to :creator, class_name: :User, foreign_key: :user_id
   belongs_to :category
   has_many :pledges
+  has_many :backers, -> { distinct }, through: :pledges, source: :user
 
   validates :name, :description, :funding_goal, :fund_by_date, presence: true
 
@@ -24,6 +25,10 @@ class Project < ApplicationRecord
 
   def self.inactive
     Project.where("fund_by_date < ?", Date.today)
+  end
+
+  def number_of_backers
+    self.backers.count
   end
 
   def number_of_pledges
