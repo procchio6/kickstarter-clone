@@ -9,13 +9,13 @@
 
 .projectShowSidebar {
   margin-top: 80px;
-  position: fixed;
 }
 
 .projectShowSidebar .statistic {
   width: 100%;
   margin-bottom: 14px !important;
   margin-left: 0px !important;
+  margin-right: 0px !important;
 }
 
 .projectCard .creator {

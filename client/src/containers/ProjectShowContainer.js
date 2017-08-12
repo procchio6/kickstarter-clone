@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Grid, Header, Image } from 'semantic-ui-react'
+import { Grid, Header, Image, Sticky } from 'semantic-ui-react'
 import accounting from 'accounting'
 
 import { getProject } from '../actions/projectActions'
@@ -12,11 +12,15 @@ import ProjectStats from '../components/ProjectStats'
 
 class ProjectShowContainer extends Component {
 
+  state = {}
+
   componentWillMount() {
     window.scrollTo(0, 0)
     const projectId = this.props.match.params.id
     this.props.getProject(projectId)
   }
+
+  handleContextRef = contextRef => this.setState({ contextRef })
 
   render() {
     const project = this.props.project
@@ -29,25 +33,31 @@ class ProjectShowContainer extends Component {
       {label: 'days to go', value: `${project.days_left}`}
     ]
 
+    const { contextRef } = this.state
+
     return (
-      <Grid>
-        <Grid.Column width={12}>
-          <Header as='h1'>{project.name}</Header>
-          <p>{project.description}</p>
-          <Image fluid src='http://lorempixel.com/400/200/technics' />
-          <ProjectDetailsPanel />
-        </Grid.Column>
-        <Grid.Column width={4}>
-          <div className='projectShowSidebar' >
-            <ProjectStats statistics={statistics} percent_funded={project.percent_funded}/>
-            <PledgeCard
-              projectId={project.id}
-              onCreatePledge={this.props.createPledge}
-              disabled={project.days_left <= 0}
-            />
-          </div>
-        </Grid.Column>
-      </Grid>
+      <div ref={this.handleContextRef}>
+        <Grid>
+          <Grid.Column width={12}>
+            <Header as='h1'>{project.name}</Header>
+            <p>{project.description}</p>
+            <Image fluid src='http://lorempixel.com/400/200/technics' />
+            <ProjectDetailsPanel />
+          </Grid.Column>
+          <Grid.Column width={4} >
+            <div className='projectShowSidebar'>
+              <Sticky offset={80} context={contextRef}>
+                <ProjectStats statistics={statistics} percent_funded={project.percent_funded}/>
+                <PledgeCard
+                  projectId={project.id}
+                  onCreatePledge={this.props.createPledge}
+                  disabled={project.days_left <= 0}
+                />
+              </Sticky>
+            </div>
+          </Grid.Column>
+        </Grid>
+      </div>
     )
   }
 }

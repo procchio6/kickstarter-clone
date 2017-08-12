@@ -15,7 +15,7 @@ export default class ProjectDetailsPanel extends Component {
         <Route path='/projects/:id/comments' />
         <Route path='/projects/:id/backers' />
 
-        <Segment attached='bottom'>
+        <Segment attached='bottom' padded>
           <Header as='h2'>Section 1</Header>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu fermentum lectus. Etiam nisl lacus, mattis et massa sollicitudin, dictum placerat mauris. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent nulla augue, semper eget arcu vel, gravida suscipit urna. Suspendisse egestas lorem at sapien luctus, sed rutrum est porttitor. Aliquam erat volutpat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
 
