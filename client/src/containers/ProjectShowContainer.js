@@ -26,11 +26,13 @@ class ProjectShowContainer extends Component {
     const project = this.props.project
     const pledgeTotal = accounting.formatMoney(project.pledge_total, '$', 0)
     const fundingGoal = accounting.formatMoney(project.funding_goal, '$', 0)
+    const numOfBackers = project.number_of_backers ? project.number_of_backers : '0'
+    const daysLeft = project.days_left ? project.days_left : '0'
 
     const statistics = [
       {label: `pledged of ${fundingGoal} goal`, value: `${pledgeTotal}`},
-      {label: 'backers', value: `${project.number_of_backers}`},
-      {label: 'days to go', value: `${project.days_left}`}
+      {label: 'backers', value: `${numOfBackers}`},
+      {label: 'days to go', value: `${daysLeft}`}
     ]
 
     const { contextRef } = this.state
