@@ -19,7 +19,7 @@ render() {
         Start a Project
       </Menu.Item>
 
-      <Menu.Item header>
+      <Menu.Item header className='navLogo'>
         <Link to='/'>
           JUMP<span style={{color:'#21BA45'}}>STARTER</span>
         </Link>
