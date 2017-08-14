@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Segment, Header } from 'semantic-ui-react'
 import { Route } from 'react-router-dom'
 
 import ProjectDetailsMenu from '../components/ProjectDetailsMenu'
@@ -13,7 +12,7 @@ export default class ProjectDetailsPanel extends Component {
 
   render() {
     const { project } = this.props
-    
+
     return (
       <div style={{marginTop: '14px'}}>
         <Route path='/projects/:id' component={ProjectDetailsMenu} />

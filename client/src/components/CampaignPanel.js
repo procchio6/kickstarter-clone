@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Segment, Header } from 'semantic-ui-react'
+import { Segment } from 'semantic-ui-react'
 import { stateToHTML } from 'draft-js-export-html'
 import { convertFromRaw } from 'draft-js'
 import SafeHTML from 'react-safe-html'

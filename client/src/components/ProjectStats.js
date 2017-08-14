@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import { Card, Progress, Statistic } from 'semantic-ui-react'
 
 export default class ProjectStats extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <Card>

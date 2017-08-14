@@ -3,8 +3,6 @@ import { Card, Form, Input, Button, Label } from 'semantic-ui-react'
 
 import PledgeModal from './PledgeModal'
 
-import PledgeAdapter from '../adapters/pledgeAdapter'
-
 export default class PledgeCard extends Component {
   constructor(props) {
     super(props)
@@ -54,7 +52,7 @@ export default class PledgeCard extends Component {
                   <Label>.00</Label>
                 </Input>
               </Form.Field>
-              <Button fluid type='submit' content='Pledge' color='green' 
+              <Button fluid type='submit' content='Pledge' color='green'
                 onClick={this.handleModalOpen}
                 disabled={this.props.disabled}
               />
