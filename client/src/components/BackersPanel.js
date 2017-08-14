@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Feed, Icon, Segment } from 'semantic-ui-react'
+import { Feed, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { accounting } from 'accounting'
 import moment from 'moment'

@@ -1,6 +1,5 @@
 import PledgeAdapter from '../adapters/pledgeAdapter'
-import { getProject, getPledges } from './projectActions'
-import history from '../history'
+import { getProject } from './projectActions'
 
 export function createPledge(pledgeData) {
   return function (dispatch) {
