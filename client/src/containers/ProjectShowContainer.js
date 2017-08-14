@@ -44,7 +44,7 @@ class ProjectShowContainer extends Component {
             <Header as='h1'>{project.name}</Header>
             <p>{project.description}</p>
             <Image fluid src='http://lorempixel.com/400/200/technics' />
-            <ProjectDetailsPanel />
+            <ProjectDetailsPanel project={project}/>
           </Grid.Column>
           <Grid.Column width={4} >
             <div className='projectShowSidebar'>

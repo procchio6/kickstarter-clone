@@ -4,6 +4,10 @@ import {
   Button, Card, Dropdown, Form, Grid, Input, Label, Message, TextArea
 } from 'semantic-ui-react'
 
+import Editor from 'draft-js-editor'
+import { convertFromRaw, convertToRaw } from 'draft-js'
+import 'draft-js/dist/Draft.css'
+
 import { getCategories } from '../actions/categoryActions'
 import { createProject, clearErrors } from '../actions/projectActions'
 
@@ -11,7 +15,7 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment'
 
-class LoginForm extends Component {
+class NewProjectForm extends Component {
   constructor(props) {
     super(props)
 
@@ -52,9 +56,18 @@ class LoginForm extends Component {
     })
   }
 
+  handleEditorChange = (campaign_content) => this.setState({campaign_content});
+
   handleSubmit = (event) => {
     event.preventDefault()
-    this.props.createProject(this.state)
+    
+    const projectData = {...this.state}
+    projectData.campaign_content = this.stringifyContent(projectData.campaign_content.getCurrentContent())
+    this.props.createProject(projectData)
+  }
+
+  stringifyContent = (content) => {
+    return JSON.stringify(convertToRaw(content))
   }
 
   categoryOptions = () => {
@@ -155,6 +168,18 @@ class LoginForm extends Component {
 
           </Card>
         </Grid.Column>
+
+        <Grid.Column stretched mobile={12} tablet={8} computer={10} largeScreen={11}>
+          <Card fluid>
+            <Card.Content style={{padding: '42px'}}>
+              <Editor
+                placeholder='Let people know why your project is awesome...'
+                onChange={(campaign_content) => this.setState({ campaign_content })}
+                editorState={this.state.campaign_content}
+              />
+            </Card.Content>
+          </Card>
+        </Grid.Column>
       </Grid>
     )
   }
@@ -164,4 +189,4 @@ function mapStateToProps(state) {
   return {...state.newProjectForm, categories: state.categories}
 }
 
-export default connect(mapStateToProps, {getCategories, createProject, clearErrors})(LoginForm)
+export default connect(mapStateToProps, {getCategories, createProject, clearErrors})(NewProjectForm)
