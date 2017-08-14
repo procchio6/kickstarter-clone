@@ -5,7 +5,7 @@ import {
 } from 'semantic-ui-react'
 
 import Editor from 'draft-js-editor'
-import { convertFromRaw, convertToRaw } from 'draft-js'
+import { EditorState, convertToRaw } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 
 import { getCategories } from '../actions/categoryActions'
@@ -24,7 +24,8 @@ class NewProjectForm extends Component {
       description: '',
       funding_goal: '100',
       fund_by_date: moment().add(1, 'days'),
-      category_id: ''
+      category_id: '',
+      campaign_content: EditorState.createEmpty()
     }
   }
 
@@ -60,7 +61,7 @@ class NewProjectForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    
+
     const projectData = {...this.state}
     projectData.campaign_content = this.stringifyContent(projectData.campaign_content.getCurrentContent())
     this.props.createProject(projectData)
@@ -174,7 +175,7 @@ class NewProjectForm extends Component {
             <Card.Content style={{padding: '42px'}}>
               <Editor
                 placeholder='Let people know why your project is awesome...'
-                onChange={(campaign_content) => this.setState({ campaign_content })}
+                onChange={this.handleEditorChange}
                 editorState={this.state.campaign_content}
               />
             </Card.Content>
