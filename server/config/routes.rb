@@ -10,7 +10,11 @@ Rails.application.routes.draw do
       get '/projects/inactive', to: 'projects#inactive'
       get '/projects/almost_funded', to: 'projects#almost_funded'
       get '/projects/almost_over', to: 'projects#almost_over'
-      resources :projects
+      resources :projects do
+        member do
+          get 'backers'
+        end
+      end
 
       resources :pledges
 

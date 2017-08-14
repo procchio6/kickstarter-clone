@@ -1,5 +1,5 @@
 class Api::V1::ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :update, :destroy]
+  before_action :set_project, only: [:show, :update, :destroy, :backers]
   before_action :authorize_user!, only: [:create, :update, :destroy]
 
   def index
@@ -30,6 +30,10 @@ class Api::V1::ProjectsController < ApplicationController
 
   def show
     render json: @project
+  end
+
+  def backers
+    render json: @project.backers
   end
 
   def create
