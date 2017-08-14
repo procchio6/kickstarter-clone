@@ -20,7 +20,7 @@ export function createProject(formData) {
   return function (dispatch) {
     const fund_by_date = formData.fund_by_date.format('YYYY-MM-DD')
     const postBody = {...formData, fund_by_date}
-    
+
     dispatch({type:'CREATING_PROJECT'})
 
     ProjectAdapter.createProject(postBody)
@@ -45,6 +45,34 @@ export function getProject(projectId) {
         history.push('/')
       } else {
         dispatch({type: 'LOAD_PROJECT', payload: project})
+      }
+    })
+  }
+}
+
+export function getBackers(projectId) {
+  return function (dispatch) {
+    dispatch({type: 'GETTING_BACKERS', payload: {projectId}})
+    ProjectAdapter.getBackers(projectId)
+    .then(backers => {
+      if (backers.error) {
+        dispatch({type: 'GET_BACKERS_FAILED', payload: backers.error})
+      } else {
+        dispatch({type: 'LOAD_BACKERS', payload: backers})
+      }
+    })
+  }
+}
+
+export function getPledges(projectId) {
+  return function (dispatch) {
+    dispatch({type: 'GETTING_PLEDGES', payload: {projectId}})
+    ProjectAdapter.getPledges(projectId)
+    .then(pledges => {
+      if (pledges.error) {
+        dispatch({type: 'GET_PLEDGES_FAILED', payload: pledges.error})
+      } else {
+        dispatch({type: 'LOAD_PLEDGES', payload: pledges})
       }
     })
   }
