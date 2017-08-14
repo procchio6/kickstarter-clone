@@ -20,7 +20,7 @@ export function createProject(formData) {
   return function (dispatch) {
     const fund_by_date = formData.fund_by_date.format('YYYY-MM-DD')
     const postBody = {...formData, fund_by_date}
-
+    
     dispatch({type:'CREATING_PROJECT'})
 
     ProjectAdapter.createProject(postBody)

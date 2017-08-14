@@ -65,6 +65,6 @@ class Api::V1::ProjectsController < ApplicationController
     def project_params
       params
         .require(:project)
-        .permit(:name, :description, :funding_goal, :fund_by_date, :image, :user_id, :category_id)
+        .permit(:name, :description, :funding_goal, :fund_by_date, :image, :user_id, :category_id, :campaign_content)
     end
 end

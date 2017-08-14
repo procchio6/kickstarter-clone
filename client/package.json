@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "accounting": "^0.4.1",
+    "draft-js": "^0.10.1",
+    "draft-js-editor": "^1.10.0",
+    "draft-js-export-html": "^0.6.0",
     "moment": "^2.18.1",
     "react": "^15.6.1",
     "react-datepicker": "^0.52.0",
