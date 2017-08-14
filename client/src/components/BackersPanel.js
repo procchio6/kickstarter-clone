@@ -20,7 +20,7 @@ class BackersPanel extends Component {
 
     return (
       <Segment attached='bottom' padded='very'>
-        {pledges.length > 0 ? pledges: <strong>No pledges have been made. Be the first!</strong>}
+        {pledges.length > 0 ? pledges: <strong>No pledges have been made!</strong>}
       </Segment>
     )
   }
