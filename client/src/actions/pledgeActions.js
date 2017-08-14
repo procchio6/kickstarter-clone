@@ -1,5 +1,5 @@
 import PledgeAdapter from '../adapters/pledgeAdapter'
-import { getProject } from './projectActions'
+import { getProject, getPledges } from './projectActions'
 import history from '../history'
 
 export function createPledge(pledgeData) {
@@ -14,7 +14,6 @@ export function createPledge(pledgeData) {
       } else {
         dispatch({type: 'PLEDGE_CREATED', payload: pledge})
         dispatch(getProject(pledge.project_id))
-        history.push(`/projects/${pledge.project_id}`)
       }
     })
   }

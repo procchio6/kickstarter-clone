@@ -14,7 +14,7 @@ class ProjectShowContainer extends Component {
 
   state = {}
 
-  componentWillMount() {
+  componentDidMount() {
     window.scrollTo(0, 0)
     const projectId = this.props.match.params.id
     this.props.getProject(projectId)

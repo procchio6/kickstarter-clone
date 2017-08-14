@@ -34,6 +34,20 @@ class ProjectsAdapter {
   static deleteProject(projectID) {
     return fetch(`${ROOT_URL}/projects/${projectID}`, {method: 'DELETE', headers: headers()})
   }
+
+  static getBackers(projectId) {
+    return fetch(`${ROOT_URL}/projects/${projectId}/backers`, {
+      method: 'GET',
+      headers: headers()
+    }).then(resp => resp.json())
+  }
+
+  static getPledges(projectId) {
+    return fetch(`${ROOT_URL}/projects/${projectId}/pledges`, {
+      method: 'GET',
+      headers: headers()
+    }).then(resp => resp.json())
+  }
 }
 
 export default ProjectsAdapter
