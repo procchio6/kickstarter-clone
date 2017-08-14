@@ -10,7 +10,7 @@ class CampaignPanel extends Component {
 
   render() {
     const campaignHTML = this.props.content ?
-      stateToHTML(convertFromRaw(this.parsedContent())) : null
+      stateToHTML(convertFromRaw(this.parsedContent())) : '<p> No campaign content! </p>'
 
     return (
       <Segment attached='bottom' padded='very'>
